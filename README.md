@@ -96,7 +96,10 @@ def create_item(name):
 ```python
 @app.route('/store/<string:name>/item')
 def get_item(name):
-    return "Hello"
+    for store in stores:
+        if store['name'] == name:
+            return jsonify(store['items'])
+    return "No Store Found"
 
 app.run(port=8080)
 
